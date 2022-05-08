@@ -1,8 +1,9 @@
-const Router = require("express")
+const Router = require("express");
+const { default: mongoose } = require("mongoose");
 const router = Router()
 
 router.get('/', async(req,res)=>{
-
+    console.log(mongoose.connection.readyState)
     const tasks = await req.context.models.Task.find();
     return res.send(tasks);
 })

@@ -4,6 +4,7 @@ version: '3.1'
 services:
 
   mongo:
+    container_name: mongodb
     image: mongo
     ports:
       - 27017:27017
@@ -13,8 +14,12 @@ services:
   mongo-express:
     image: mongo-express
     restart: always
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
     ports:
       - 8080:8081
+    volumes:
+        - mongo-data:/data/db
 
 volumes:
   mongo-data:
