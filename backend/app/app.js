@@ -12,6 +12,7 @@ require('dotenv').config();
 const app = express();
 
 // body-parse
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 // mongoose connect

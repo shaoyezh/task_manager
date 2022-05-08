@@ -16,7 +16,9 @@ router.post('/create', async(req, res)=>{
         date: body.date,
         remainder: body.remainder
     })
-    task.save().catch(err=>{
+    task.save().then(data=>{
+        return res.json(data)
+    }).catch(err=>{
         res.status(500).send({
             message:
                 err.message || "Error occured while creating the new task"
