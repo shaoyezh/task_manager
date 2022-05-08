@@ -4,14 +4,19 @@ const express = require('express');
 const cors = require('cors');
 const middlewares = require('./middlewares');
 const mongoose = require("mongoose")
+const bodyParser = require("body-parser")
+// env
 require('dotenv').config();
+
+// express framework
 const app = express();
 
-console.log(process.env.DATABASE_URL)
+// body-parse
+app.use(bodyParser.urlencoded({extended: true}))
 
+// mongoose connect
 mongoose.connect(process.env.DATABASE_URL)
 
-console.log(mongoose.connection.readyState);
 // Application middleware
 
 // app.use(middlewares.notFound);
