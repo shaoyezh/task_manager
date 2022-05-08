@@ -6,8 +6,11 @@ const middlewares = require('./middlewares');
 const mongoose = require("mongoose")
 require('dotenv').config();
 const app = express();
+
 console.log(process.env.DATABASE_URL)
+
 mongoose.connect(process.env.DATABASE_URL)
+
 console.log(mongoose.connection.readyState);
 // Application middleware
 
