@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const tasks_array = [
   {
-      id:1,
+      _id:1,
       text: 'example task',
       day: '2020-05-04',
       reminder: false
@@ -25,7 +25,7 @@ function App() {
   }
   console.log(url)
   const loadTask = () =>{
-    fetch('http://localhost:3000/tasks').then((res)=>res.json())
+    fetch('http://localhost:5000/tasks').then((res)=>res.json())
     .then((data)=>{
       console.log(url)
       console.log(data)
@@ -35,20 +35,20 @@ function App() {
   useEffect(loadTask,[])
   // Add Task
   const addTask = (task) =>{
-    const id = Math.floor(Math.random() * 10000) + 1
-    const newTask = {id, ...task}
+    const _id = Math.floor(Math.random() * 10000) + 1
+    const newTask = {_id, ...task}
     console.log(newTask)
     setTasks([...tasks, newTask])
   }
 
   // Delete Task
   const deleteTask = (id) =>{
-    setTasks(tasks.filter((task)=>task.id !== id))
+    setTasks(tasks.filter((task)=>task._id !== id))
   }
 
   //Toggle Reminder
   const toggleReminder = (id) =>{
-    setTasks(tasks.map((task) => task.id ===id? {...task, reminder:!task.reminder} : task ))
+    setTasks(tasks.map((task) => task._id ===id? {...task, reminder:!task.reminder} : task ))
   }
 
   return (
