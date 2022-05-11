@@ -13,8 +13,8 @@ router.post('/create', async(req, res)=>{
 
     console.log(req)
     const task = new req.context.models.Task({
-        name: body.name,
-        date: body.date,
+        text: body.text,
+        day: body.day,
         remainder: body.remainder
     })
     task.save().then(data=>{

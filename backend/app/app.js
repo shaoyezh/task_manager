@@ -16,7 +16,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 // mongoose connect
-mongoose.set('bufferCommands', false);
 mongoose.connect(process.env.DATABASE_URL)
 
 console.log(mongoose.connection.readyState)

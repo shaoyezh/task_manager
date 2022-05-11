@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Tasks from './Components/Tasks';
 import AddTask from './Components/AddTask';
 import { useState } from 'react';
+
 
 const tasks_array = [
   {
@@ -17,7 +18,21 @@ function App() {
   const [showAddTask, setShowAddTask] = useState(false)
   const [tasks, setTasks] = useState(tasks_array)
 
+  let url = process.env.DEV_API
 
+  if(process.env.NODE_ENV !== 'development'){
+    url = process.env.PROD_API
+  }
+  console.log(url)
+  const loadTask = () =>{
+    fetch('http://localhost:3000/tasks').then((res)=>res.json())
+    .then((data)=>{
+      console.log(url)
+      console.log(data)
+      setTasks(data)})
+  }
+
+  useEffect(loadTask,[])
   // Add Task
   const addTask = (task) =>{
     const id = Math.floor(Math.random() * 10000) + 1
