@@ -6,4 +6,10 @@ const taskSchema = new mongoose.Schema({
   remainder: Boolean
 })
 
+// static method
+taskSchema.methods.toggleRemainder = function(){
+  this.remainder = !this.remainder
+  this.save()
+}
+
 module.exports = mongoose.model("Task", taskSchema)

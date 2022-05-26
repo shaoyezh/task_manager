@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 const AddTask = ({onAdd}) => {
     const [text, setText] = useState('')
     // const [day, setDay] = useState('')
-    const [reminder, setReminder] = useState(false)
+    const [remainder, setRemainder] = useState(false)
     const [date, setDate] = useState(new Date())
 
     const onSubmit = (e) =>{
@@ -23,10 +23,10 @@ const AddTask = ({onAdd}) => {
         //const offset = date.getTimezoneOffset()
         //setDate(new Date(date.getTime() -(offset * 60 * 1000)))
         const day = date.toLocaleDateString("en-CA")
-        onAdd({text, day, reminder})
-
+        onAdd({text, day, remainder})
         setText('')
-        setReminder(false)
+        setRemainder(false)
+    
     }
 
     return (
@@ -40,8 +40,8 @@ const AddTask = ({onAdd}) => {
                 <DatePicker selected={date} onChange={(date) => setDate(date)} />
             </div>
             <div className='form-control form-control-check'>
-                <label>Set Reminder</label>
-                <input type='checkbox' value={reminder} onChange={(e)=>setReminder(e.currentTarget.checked)}/>
+                <label>Set remainder</label>
+                <input type='checkbox' checked = {remainder} value={remainder} onChange={(e)=>setRemainder(e.currentTarget.checked)}/>
             </div>
 
             <input type='submit' value='Save Task' className='btn btn-block'/>
